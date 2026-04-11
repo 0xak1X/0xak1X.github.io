@@ -9,8 +9,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Share+Tech+Mono&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos inyectados solo para que el canvas se quede de fondo */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            opacity: 0.3; /* Opacidad de la lluvia */
+            pointer-events: none;
+        }
+
+        .skills-section {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
 </head>
 <body>
+
+    <canvas id="matrix"></canvas>
 
     <div class="vignette"></div>
     <div class="scanlines"></div>
@@ -43,51 +64,51 @@
         <div class="skills-layout">
 
             <div class="skills-column">
-                <h3 class="column-title"># MÓDULOS TÉCNICOS</h3>
+                <h3 class="column-title">SKILLS</h3>
 
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span class="skill-name">Web Penetration Testing</span>
-                        <span class="skill-percent">95%</span>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill" style="width: 95%;"></div>
+                <div class="tech-module">
+                    <div class="module-header"><span>WEB_PENTESTING</span></div>
+                    <div class="module-tags">
+                        <span>Burp Suite</span>
+                        <span>OWASP Top 10</span>
+                        <span>Injections ATTCKS</span>
+                        <span>API Security</span>
                     </div>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span class="skill-name">Vulnerability Assessment</span>
-                        <span class="skill-percent">90%</span>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill" style="width: 90%;"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span class="skill-name">Python / Bash Scripting</span>
-                        <span class="skill-percent">80%</span>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill" style="width: 80%;"></div>
+                <div class="tech-module">
+                    <div class="module-header"><span>OSINT_&_RECON</span></div>
+                    <div class="module-tags">
+                        <span>Shodan</span>
+                        <span>Google Dorking</span>
+                        <span>Social Engineering</span>
+                        <span>Phishing</span>
                     </div>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span class="skill-name">Red Teaming / Malware Dev</span>
-                        <span class="skill-percent">75%</span>
+                <div class="tech-module">
+                    <div class="module-header"><span>RED_TEAMING</span></div>
+                    <div class="module-tags">
+                        <span>Active Directory</span>
+                        <span>Metasploit</span>
+                        <span>Evasión AV/EDR</span>
+                        <span>Impacket</span>
                     </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill" style="width: 75%;"></div>
+                </div>
+
+                <div class="tech-module">
+                    <div class="module-header"><span>NETWORK_SEC</span></div>
+                    <div class="module-tags">
+                        <span>Nmap</span>
+                        <span>Wireshark</span>
+                        <span>Airgeddon</span>
+                        <span>Pivoting</span>
                     </div>
                 </div>
             </div>
 
             <div class="certs-column">
-                <h3 class="column-title"># CREDENCIALES VERIFICADAS</h3>
+                <h3 class="column-title">CERTIFICACIONES</h3>
 
                 <div class="cert-card">
                     <div class="cert-header">
@@ -100,7 +121,7 @@
                 <div class="cert-card">
                     <div class="cert-header">
                         <h4 class="cert-title">PJPT</h4>
-                        <span class="cert-status">[ ACTIVA ]</span>
+                        <span class="cert-status">[ EN PROCESO ]</span>
                     </div>
                     <p class="cert-desc">Practical Junior Penetration Tester. Auditoría interna de redes y Active Directory.</p>
                 </div>
@@ -108,7 +129,7 @@
                 <div class="cert-card">
                     <div class="cert-header">
                         <h4 class="cert-title">CJCA</h4>
-                        <span class="cert-status">[ ACTIVA ]</span>
+                        <span class="cert-status">[ EN PROCESO ]</span>
                     </div>
                     <p class="cert-desc">Certified Junior Cibersecurity Analyst. Fundamentos sólidos de defensa y respuesta a incidentes.</p>
                 </div>
@@ -116,9 +137,9 @@
                 <div class="cert-card">
                     <div class="cert-header">
                         <h4 class="cert-title">TryHackMe</h4>
-                        <span class="cert-status">[ TOP 1% ]</span>
+                        <span class="cert-status">[ TOP 2% ]</span>
                     </div>
-                    <p class="cert-desc">Clasificación de élite mundial en la resolución de laboratorios y CTFs prácticos de ciberseguridad.</p>
+                    <p class="cert-desc">Clasificación mundial en la resolución de laboratorios y CTFs prácticos de ciberseguridad.</p>
                 </div>
 
             </div>
@@ -134,5 +155,72 @@
         </div>
         <span class="coords" id="coords">CPU: 7% &nbsp;|&nbsp; MEM: 458MB &nbsp;|&nbsp; TEMP: 52°C</span>
     </footer>
+
+    <script>
+    let enTransicion = false;
+        window.addEventListener('wheel', (evento) => {
+            if (enTransicion) return;
+            const zonaScroll = document.querySelector('main');
+            let enTopeSuperior = zonaScroll.scrollTop === 0;
+            let enTopeInferior = Math.ceil(zonaScroll.scrollTop + zonaScroll.clientHeight) >= zonaScroll.scrollHeight - 2;
+
+            if (evento.deltaY > 30 && enTopeInferior) { // ABAJO
+                enTransicion = true;
+                document.body.style.opacity = '0';
+                setTimeout(() => window.location.href = 'contacto.html', 400);
+            } else if (evento.deltaY < -30 && enTopeSuperior) { // ARRIBA
+                enTransicion = true;
+                document.body.style.opacity = '0';
+                setTimeout(() => window.location.href = 'proyectos.html', 400);
+            }
+        });
+    </script>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(2, 0, 5, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#9d00ff'; // Color morado
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 30);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+
 </body>
 </html>

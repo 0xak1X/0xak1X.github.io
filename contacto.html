@@ -51,13 +51,13 @@
         </div>
 
         <div class="contact-header">
-            <h2 class="section-title">ENLACES_DE_RED</h2>
+            <h2 class="section-title">LINKS</h2>
             <p class="contact-subtitle">SELECCIONE UN NODO PARA ESTABLECER CONEXIÓN</p>
         </div>
 
         <div class="contact-grid">
 
-            <a href="mailto:tu@email.com" class="contact-node">
+            <a href="mailto:akiX.sec@gmail.com" class="contact-node">
                 <div class="node-id">[ 0x01 ]</div>
                 <div class="node-content">
                     <h3 class="node-title">SECURE_MAIL</h3>
@@ -65,15 +65,15 @@
                 </div>
             </a>
 
-            <a href="#" target="_blank" class="contact-node">
+            <a href="https://github.com/0xak1X" target="_blank" class="contact-node">
                 <div class="node-id">[ 0x02 ]</div>
                 <div class="node-content">
                     <h3 class="node-title">GITHUB</h3>
-                    <span class="node-desc">REPOSITORIO DE ARSENAL</span>
+                    <span class="node-desc">REPOSITORIO DE MIS PROYECTOS</span>
                 </div>
             </a>
 
-            <a href="#" target="_blank" class="contact-node">
+            <a href="https://www.linkedin.com/in/marc-jornet-akix/" target="_blank" class="contact-node">
                 <div class="node-id">[ 0x03 ]</div>
                 <div class="node-content">
                     <h3 class="node-title">LINKEDIN</h3>
@@ -81,19 +81,19 @@
                 </div>
             </a>
 
-            <a href="#" target="_blank" class="contact-node">
+            <a href="https://tryhackme.com/p/ak1X" target="_blank" class="contact-node">
                 <div class="node-id">[ 0x04 ]</div>
                 <div class="node-content">
                     <h3 class="node-title">TRYHACKME</h3>
-                    <span class="node-desc">SIMULACIONES DE COMBATE</span>
+                    <span class="node-desc">ACADEMIA DE APRENDIZAJE Y CTFs</span>
                 </div>
             </a>
 
-            <a href="#" target="_blank" class="contact-node">
+            <a href="https://profile.hackthebox.com/profile/019d7c18-2360-70ee-bd61-b0169fbe219a" target="_blank" class="contact-node">
                 <div class="node-id">[ 0x05 ]</div>
                 <div class="node-content">
                     <h3 class="node-title">HACK_THE_BOX</h3>
-                    <span class="node-desc">EJERCICIOS DE RED TEAM</span>
+                    <span class="node-desc">ACADEMIA DE APRENDIZAJE Y CTFs</span>
                 </div>
             </a>
 
@@ -101,7 +101,7 @@
                 <div class="node-id">[ 0x06 ]</div>
                 <div class="node-content">
                     <h3 class="node-title">DISCORD</h3>
-                    <span class="node-desc">CANAL DE COMUNICACIÓN P2P</span>
+                    <span class="node-desc">CONTACTAME</span>
                 </div>
             </a>
 
@@ -116,5 +116,17 @@
         </div>
         <span class="coords" id="coords">CPU: 7% &nbsp;|&nbsp; MEM: 458MB &nbsp;|&nbsp; TEMP: 52°C</span>
     </footer>
+    <script>let enTransicion = false;
+        window.addEventListener('wheel', (evento) => {
+            if (enTransicion) return;
+            const zonaScroll = document.querySelector('main');
+            let enTopeSuperior = zonaScroll.scrollTop === 0;
+
+            if (evento.deltaY < -30 && enTopeSuperior) { // ARRIBA
+                enTransicion = true;
+                document.body.style.opacity = '0';
+                setTimeout(() => window.location.href = 'habilidades.html', 400);
+            }
+        });</script>
 </body>
 </html>

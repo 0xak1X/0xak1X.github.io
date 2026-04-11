@@ -60,5 +60,14 @@
         <span class="coords" id="coords">CPU: 7% &nbsp;|&nbsp; MEM: 458MB &nbsp;|&nbsp; TEMP: 52°C</span>
     </footer>
 
+    <script>let enTransicion = false;
+        window.addEventListener('wheel', (evento) => {
+            if (enTransicion) return;
+            if (evento.deltaY > 30) { // SCROLL HACIA ABAJO
+                enTransicion = true;
+                document.body.style.opacity = '0';
+                setTimeout(() => window.location.href = 'proyectos.html', 400);
+            }
+        });</script>
 </body>
 </html>

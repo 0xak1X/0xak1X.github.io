@@ -79,13 +79,13 @@
             </article>
 
             <article class="project-card">
-                <div class="card-status status-alert">[ MALWARE ]</div>
-                <h3 class="card-title">QR MALICIOSO</h3>
-                <p class="card-desc">Creación de un QR malicioso que conlleva a un RCE.</p>
+                <div class="card-status status-alert">[ REPORTE ]</div>
+                <h3 class="card-title">REPORTE DE CTFs</h3>
+                <p class="card-desc">Documentacion de la realizacion de CTFs.</p>
                 <div class="card-tags">
-                    <span>msfvenom</span>
-                    <span>Metasploit</span>
-                    <span>Exploit</span>
+                    <span>Markdown</span>
+                    <span>Obsidian</span>
+                    <span>CVE</span>
                 </div>
                 <a href="#" class="card-btn">DESENCRIPTAR</a>
             </article>
@@ -101,5 +101,22 @@
         </div>
         <span class="coords" id="coords">CPU: 7% &nbsp;|&nbsp; MEM: 458MB &nbsp;|&nbsp; TEMP: 52°C</span>
     </footer>
+    <script>let enTransicion = false;
+        window.addEventListener('wheel', (evento) => {
+            if (enTransicion) return;
+            const zonaScroll = document.querySelector('main');
+            let enTopeSuperior = zonaScroll.scrollTop === 0;
+            let enTopeInferior = Math.ceil(zonaScroll.scrollTop + zonaScroll.clientHeight) >= zonaScroll.scrollHeight - 2;
+
+            if (evento.deltaY > 30 && enTopeInferior) { // ABAJO
+                enTransicion = true;
+                document.body.style.opacity = '0';
+                setTimeout(() => window.location.href = 'habilidades.html', 400);
+            } else if (evento.deltaY < -30 && enTopeSuperior) { // ARRIBA
+                enTransicion = true;
+                document.body.style.opacity = '0';
+                setTimeout(() => window.location.href = 'index.html', 400);
+            }
+        });</script>
 </body>
 </html>
